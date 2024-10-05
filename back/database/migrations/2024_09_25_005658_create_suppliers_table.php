@@ -6,15 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSuppliersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('suppliers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();  // Use 'id()' to create an 'unsignedBigInteger'
             $table->string('name')->unique();
             $table->text('address')->nullable();
             $table->string('phone');
@@ -22,11 +17,6 @@ class CreateSuppliersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('suppliers');

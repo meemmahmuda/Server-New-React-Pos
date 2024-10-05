@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('address');
             $table->string('phone_no');
-            $table->unsignedBigInteger('product_id'); // Change to unsignedBigInteger
+            $table->unsignedBigInteger('product_id'); // Foreign key to products table
             $table->integer('quantity');
             $table->decimal('selling_price', 10, 2);
             $table->decimal('discount', 10, 2)->default(0)->nullable();
@@ -25,7 +25,11 @@ return new class extends Migration
             $table->decimal('money_returned', 10, 2)->nullable(); // Made nullable
             $table->timestamps();
         
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            // Foreign key constraint
+            $table->foreign('product_id')
+                  ->references('id')
+                  ->on('products')
+                  ->onDelete('cascade'); // Ensure 'products' table exists and is correct
         });
     }
 
